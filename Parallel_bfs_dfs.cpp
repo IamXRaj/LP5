@@ -112,3 +112,63 @@ int main() {
     
     return 0;  // End of program
 }
+
+
+
+/*
+### **Key Terms Related to the Code:**  
+
+1. **Graph (Adjacency List)**  
+   - Represents a graph using a list of connected vertices for each node.  
+   - Efficient for sparse graphs (few edges).  
+
+2. **BFS (Breadth-First Search)**  
+   - Explores all neighbor nodes at the present level before moving deeper.  
+   - Uses a **queue** for traversal.  
+
+3. **DFS (Depth-First Search)**  
+   - Explores as far as possible along each branch before backtracking.  
+   - Uses a **stack** (explicit or implicit via recursion).  
+
+4. **OpenMP**  
+   - API for **parallel programming** in C/C++/Fortran.  
+   - Uses compiler directives (`#pragma omp`) for multi-threading.  
+
+5. **Parallel BFS/DFS**  
+   - Uses multiple threads to speed up traversal.  
+   - Requires **critical sections** (`#pragma omp critical`) to avoid race conditions.  
+
+6. **Critical Section**  
+   - A code block that only **one thread can execute at a time** to prevent data races.  
+
+7. **Race Condition**  
+   - When multiple threads access shared data simultaneously, leading to unpredictable results.  
+
+8. **`#pragma omp parallel`**  
+   - Creates a team of threads to execute code in parallel.  
+
+9. **`#pragma omp for`**  
+   - Splits loop iterations among threads for parallel execution.  
+
+10. **`#pragma omp single`**  
+    - Only **one thread** executes the block (used for initialization).  
+
+11. **`nowait` Clause**  
+    - Removes the implicit barrier after a parallel loop, allowing threads to proceed without waiting.  
+
+12. **Double-Check Pattern**  
+    - Used in parallel DFS to avoid race conditions when checking `visited[v]`.  
+
+13. **Synchronization**  
+    - Ensures threads coordinate properly (e.g., using `critical` sections).  
+
+14. **Shared vs. Private Variables**  
+    - **Shared**: Accessible by all threads (e.g., `visited`, `queue`, `stack`).  
+    - **Private**: Each thread has its own copy (e.g., loop variables).  
+
+15. **Traversal Order**  
+    - **BFS**: Level-by-level (shortest path in unweighted graphs).  
+    - **DFS**: Goes deep first (used in maze solving, topological sorting).  
+
+This code demonstrates **parallel graph traversal** using **OpenMP** for better performance on multi-core systems.
+*/
