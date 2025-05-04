@@ -2,10 +2,12 @@
 #include <vector>    // Include the vector container from the STL
 #include <omp.h>     // Include OpenMP library for parallel processing support
 
+using namespace std; // Use the entire std namespace
+
 int main() {
     // Sample data initialization
     // Create a vector of integers with some sample values
-    std::vector<int> data = {5, 2, 9, 1, 7, 6, 4, 3, 8};
+    vector<int> data = {5, 2, 9, 1, 7, 6, 4, 3, 8};
     
     // Initialize reduction variables:
     int sum = 0;             // Will accumulate the sum of all elements
@@ -37,67 +39,10 @@ int main() {
     double avg = static_cast<double>(sum) / data.size();
     
     // Output results to the console
-    std::cout << "Sum: " << sum << "\n"           // Print sum
-              << "Average: " << avg << "\n"       // Print average
-              << "Minimum: " << min_val << "\n"   // Print minimum value
-              << "Maximum: " << max_val << std::endl;  // Print maximum value
+    cout << "Sum: " << sum << "\n"           // Print sum
+         << "Average: " << avg << "\n"       // Print average
+         << "Minimum: " << min_val << "\n"   // Print minimum value
+         << "Maximum: " << max_val << endl;  // Print maximum value
     
     return 0;  // Exit program with success status
 }
-
-
-
-/*
-### **Key Terms Related to the Code**  
-
-1. **OpenMP (`#pragma omp`)**  
-   - API for **parallel programming** in C/C++/Fortran.  
-   - Uses compiler directives to enable multi-threading.  
-
-2. **Reduction Operation**  
-   - Combines partial results from multiple threads into a single final result.  
-   - Supported operations: `+`, `min`, `max`, `*`, `&`, `|`, etc.  
-
-3. **Parallel For Loop (`#pragma omp parallel for`)**  
-   - Splits loop iterations across threads for concurrent execution.  
-
-4. **Reduction Variables (`reduction` clause)**  
-   - **`sum`**: Each thread computes a partial sum, combined at the end.  
-   - **`min_val`**: Each thread finds its local minimum, final result is global min.  
-   - **`max_val`**: Each thread finds its local maximum, final result is global max.  
-
-5. **Race Condition Prevention**  
-   - **`reduction`** avoids data races by handling variable updates safely.  
-   - No need for explicit locks (e.g., `atomic` or `critical`).  
-
-6. **Static Cast (`static_cast<double>`)**  
-   - Ensures **floating-point division** for accurate average calculation.  
-
-7. **Performance Benefits**  
-   - Parallel reduction speeds up computations for large datasets.  
-   - Threads work on different parts of the data simultaneously.  
-
-8. **Thread Safety**  
-   - OpenMP automatically handles synchronization for reduction variables.  
-
-9. **Data Distribution**  
-   - Loop iterations are divided **evenly** among threads (default scheduling).  
-
-10. **Output Synchronization**  
-    - `std::cout` is thread-safe but may interleave output without synchronization.  
-
-### **Why This Code Matters**  
-- Demonstrates **efficient parallel reduction** (sum, min, max, avg).  
-- Shows how OpenMP simplifies parallel programming with **automatic thread management**.  
-- Useful for statistical computations on large datasets.  
-
-### **Execution Flow**  
-1. **Initialize** data and reduction variables.  
-2. **Parallel loop**: Threads compute partial sums, mins, and maxes.  
-3. **Combine results**: OpenMP merges partial results into final values.  
-4. **Calculate average** (sequential step).  
-5. **Print results** (sum, avg, min, max).  
-
-This example is a **foundational pattern** in parallel computing, often used in numerical analysis and data processing.
-
-*/
