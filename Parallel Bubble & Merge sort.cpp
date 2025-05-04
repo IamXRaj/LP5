@@ -30,6 +30,10 @@ void parallelBubbleSort(vector<int>& arr) {
     }
 }
 
+
+
+
+
 // Sequential Merge helper function for merge sort
 void merge(vector<int>& arr, int l, int m, int r) {
     // Create temp array containing elements to merge
@@ -94,3 +98,62 @@ int main() {
 
     return 0;  // Exit program
 }
+
+
+/*
+
+### **Key Terms Related to the Code:**  
+
+1. **Bubble Sort**  
+   - Simple sorting algorithm that repeatedly swaps adjacent elements if they are in the wrong order.  
+   - **Time Complexity**: \(O(n^2)\) (worst/average case).  
+
+2. **Odd-Even Transposition Sort**  
+   - Parallel version of Bubble Sort where adjacent elements are compared in alternating (odd-even) phases.  
+   - Reduces sequential dependencies for better parallelism.  
+
+3. **Merge Sort**  
+   - Divide-and-conquer algorithm that splits the array, sorts subarrays, and merges them.  
+   - **Time Complexity**: \(O(n \log n)\) (worst/average case).  
+
+4. **Parallel Sorting**  
+   - Uses multiple threads to speed up sorting (e.g., OpenMP).  
+   - **Bubble Sort Parallelism**: Odd-even phases allow concurrent swaps.  
+   - **Merge Sort Parallelism**: Recursive subarray sorting in parallel.  
+
+5. **OpenMP (`#pragma omp` Directives)**  
+   - **`parallel for`**: Parallelizes loop iterations across threads.  
+   - **`sections`**: Divides work into independent blocks for different threads.  
+   - **`atomic`**: Ensures thread-safe updates (e.g., `swapped` flag).  
+
+6. **Race Condition**  
+   - When multiple threads modify shared data (e.g., `swapped` flag) without synchronization.  
+   - Prevented using **`atomic`** or **`critical`** sections.  
+
+7. **Divide-and-Conquer**  
+   - Merge Sort splits the problem into smaller subproblems (recursively).  
+   - Parallelism comes from sorting subarrays independently.  
+
+8. **Merging (Sequential Step in Merge Sort)**  
+   - Combines two sorted subarrays into one.  
+   - Typically **not parallelized** due to dependencies.  
+
+9. **Early Termination in Bubble Sort**  
+   - If no swaps occur in a pass, the array is sorted (`swapped` flag optimization).  
+
+10. **Shared vs. Private Variables**  
+    - **Shared**: `arr`, `swapped` (accessed by all threads).  
+    - **Private**: Loop indices (`i`, `j`, `k`).  
+
+11. **Thread Safety**  
+    - **`atomic write`** ensures only one thread updates `swapped` at a time.  
+
+12. **Performance Trade-offs**  
+    - **Bubble Sort (Parallel)**: Works best for small datasets due to high overhead.  
+    - **Merge Sort (Parallel)**: Better for large datasets (scales well with threads).  
+
+*/
+
+
+
+
